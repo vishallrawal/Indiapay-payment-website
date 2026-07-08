@@ -19,7 +19,7 @@ export const createSplitGroup = async (req, res) => {
 
     const missingEmails = memberEmails.filter(email => !existingEmails.includes(email.toLowerCase()));
     if (missingEmails.length > 0) {
-      return res.status(400).json({ success: false, error: `Members not found on AuraPay: ${missingEmails.join(', ')}` });
+      return res.status(400).json({ success: false, error: `Members not found on IndiaPay: ${missingEmails.join(', ')}` });
     }
 
     // Calculate equal split share

@@ -156,7 +156,7 @@ export const transferMoney = async (req, res) => {
     // Look up recipient
     const recipient = await db.findOne('users', { email: recipientEmail.toLowerCase() });
     if (!recipient) {
-      return res.status(404).json({ success: false, error: `Recipient user with email [${recipientEmail}] not found on AuraPay.` });
+      return res.status(404).json({ success: false, error: `Recipient user with email [${recipientEmail}] not found on IndiaPay.` });
     }
 
     // Generate reward scratch card automatically for the sender

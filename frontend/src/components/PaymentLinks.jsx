@@ -232,7 +232,7 @@ function PaymentLinks({ user, token }) {
         <div className="glass-panel rounded-2xl p-5 border border-slate-800/60 text-xs text-slate-400 space-y-2">
           <span className="font-semibold text-slate-300 block">How payment links work:</span>
           <p className="leading-relaxed text-[11px]">
-            Once generated, copy the URL and send it to your client. When they click the link, they will be redirected to AuraPay's secure checkout page. They can pay via their debit/credit card. Upon successful settlement, the funds will be instantly credited to your wallet balance.
+            Once generated, copy the URL and send it to your client. When they click the link, they will be redirected to IndiaPay's secure checkout page. They can pay via their debit/credit card. Upon successful settlement, the funds will be instantly credited to your wallet balance.
           </p>
         </div>
       </div>

@@ -369,7 +369,7 @@ function UtilityRecharges({ token, user, refreshUserProfile }) {
             ) : (
               <div className="glass-panel rounded-3xl p-6 border border-slate-850 text-[10.5px] text-slate-400 space-y-4 leading-relaxed font-mono">
                 <p>
-                  Utility payments processed via AuraPay Go are routed through the secure Payment Orchestration network. The system evaluates gateways dynamically:
+                  Utility payments processed via IndiaPay Go are routed through the secure Payment Orchestration network. The system evaluates gateways dynamically:
                 </p>
                 <div className="space-y-2 text-[10px] text-slate-500 border-t border-slate-850 pt-3">
                   <div>• Electricity invoices are cleared within 24 hours with zero processing overhead.</div>

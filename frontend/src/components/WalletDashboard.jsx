@@ -147,7 +147,7 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
               <svg className="w-6 h-6 text-slate-400/80 rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
             <span className="font-bold text-[11px] tracking-widest font-heading uppercase text-indigo-200 bg-indigo-500/20 px-3 py-1 rounded-full border border-indigo-500/20">
-              AuraPay Platinum
+              IndiaPay Platinum
             </span>
           </div>
 
@@ -263,11 +263,11 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-indigo-400">
               <ShieldCheck className="w-5 h-5" />
-              <h4 className="font-heading font-semibold text-slate-200 text-sm">AuraPay Gateway Platform</h4>
+              <h4 className="font-heading font-semibold text-slate-200 text-sm">IndiaPay Gateway Platform</h4>
             </div>
             
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              Welcome to the premium payment orchestration network. AuraPay combines instantaneous bank-transfer simulation with real-world payment checkouts:
+              Welcome to the premium payment orchestration network. IndiaPay combines instantaneous bank-transfer simulation with real-world payment checkouts:
             </p>
             
             <div className="space-y-3 pt-1 text-[11px]">

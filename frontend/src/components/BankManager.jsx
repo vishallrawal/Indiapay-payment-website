@@ -6,7 +6,8 @@ import {
   CheckCircle, 
   ShieldCheck,
   AlertCircle,
-  HelpCircle
+  HelpCircle,
+  X
 } from 'lucide-react';
 
 import { API_BASE } from '../config.js';
@@ -37,6 +38,12 @@ function BankManager({ token }) {
   const [selectedBank, setSelectedBank] = useState('');
   const [linkStep, setLinkStep] = useState('select'); // select, verifying, success
   const [error, setError] = useState('');
+
+  // Balance checking states
+  const [visibleBalances, setVisibleBalances] = useState({});
+  const [pinPromptBank, setPinPromptBank] = useState(null);
+  const [upiPinInput, setUpiPinInput] = useState('');
+  const [pinError, setPinError] = useState('');
 
   const fetchBanks = async () => {
     try {
@@ -134,11 +141,24 @@ function BankManager({ token }) {
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-right flex flex-col items-end gap-1.5">
                   {bank.isDefault ? (
-                    <span className="text-[8px] font-bold text-teal-400 font-mono uppercase bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">PRIMARY DEBIT</span>
+                    <span className="text-[8.5px] font-bold text-teal-400 font-mono uppercase bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">PRIMARY DEBIT</span>
                   ) : (
-                    <span className="text-[8px] font-bold text-slate-500 font-mono uppercase bg-slate-900 px-2 py-0.5 rounded border border-slate-800">SECONDARY</span>
+                    <span className="text-[8.5px] font-bold text-slate-500 font-mono uppercase bg-slate-900 px-2 py-0.5 rounded border border-slate-800">SECONDARY</span>
+                  )}
+                  
+                  {visibleBalances[bank.id || bank.bankName + bank.accountNumber] ? (
+                    <span className="text-[10.5px] font-bold text-emerald-400 font-mono">
+                      Bal: ₹{(bank.balance || 23420).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                    </span>
+                  ) : (
+                    <button 
+                      onClick={() => setPinPromptBank(bank)}
+                      className="text-[9px] font-bold text-red-500 hover:text-red-400 bg-red-500/10 hover:bg-red-500/20 px-2.5 py-0.5 rounded transition-colors cursor-pointer border border-red-500/25 mt-0.5"
+                    >
+                      Check Balance
+                    </button>
                   )}
                 </div>
               </div>
@@ -203,7 +223,7 @@ function BankManager({ token }) {
               <div className="space-y-1.5">
                 <h4 className="text-xs font-bold text-slate-200">Sending SMS Verification...</h4>
                 <p className="text-[10px] text-slate-500 max-w-[200px] mx-auto leading-relaxed">
-                  AuraPay is sending an encrypted carrier SMS to link bank profiles matching your phone number.
+                  IndiaPay is sending an encrypted carrier SMS to link bank profiles matching your phone number.
                 </p>
               </div>
             </div>
@@ -230,6 +250,56 @@ function BankManager({ token }) {
 
         </div>
       </div>
+
+      {/* Mini UPI PIN Modal for Balance Check */}
+      {pinPromptBank && (
+        <div className="fixed inset-0 z-50 bg-[#04060b]/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="w-full max-w-sm glass-panel rounded-3xl p-6 shadow-2xl relative border border-slate-800 space-y-4">
+            <button 
+              onClick={() => { setPinPromptBank(null); setUpiPinInput(''); setPinError(''); }}
+              className="absolute top-4 right-4 p-1.5 rounded-lg border border-slate-800 hover:bg-slate-850 hover:text-slate-200 text-slate-400 transition-colors cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <div className="text-center space-y-1">
+              <h4 className="font-heading font-semibold text-slate-200 text-xs font-mono">Verify UPI PIN</h4>
+              <p className="text-[10px] text-slate-400">Enter UPI PIN for {pinPromptBank.bankName} ({pinPromptBank.accountNumber})</p>
+            </div>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              if (upiPinInput === pinPromptBank.upiPin || upiPinInput === '1234') {
+                setVisibleBalances(prev => ({ ...prev, [pinPromptBank.id || pinPromptBank.bankName + pinPromptBank.accountNumber]: true }));
+                setPinPromptBank(null);
+                setUpiPinInput('');
+                setPinError('');
+              } else {
+                setPinError('Invalid UPI PIN. Default PIN is 1234.');
+              }
+            }} className="space-y-3">
+              {pinError && (
+                <div className="p-2.5 bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] rounded-xl text-center font-mono">
+                  {pinError}
+                </div>
+              )}
+              <input
+                type="password"
+                maxLength={6}
+                placeholder="Enter 4 or 6-digit PIN"
+                value={upiPinInput}
+                onChange={(e) => setUpiPinInput(e.target.value)}
+                className="w-full text-center tracking-widest text-sm font-mono py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-250 outline-none focus:border-red-500 transition-colors"
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-xs font-bold text-white transition-all cursor-pointer shadow-md shadow-red-500/10"
+              >
+                Confirm & View Balance
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
     </div>
   );

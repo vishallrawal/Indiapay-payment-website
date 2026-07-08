@@ -47,7 +47,7 @@ function QRShowcase({ token, user, refreshUserProfile }) {
         if (match) {
           setFoundUser(match);
         } else {
-          setSearchError('No AuraPay user found with this email/UPI ID.');
+          setSearchError('No IndiaPay user found with this email/UPI ID.');
         }
       }
     } catch (err) {
@@ -120,7 +120,7 @@ function QRShowcase({ token, user, refreshUserProfile }) {
         
         <div className="space-y-1">
           <h3 className="font-heading font-bold text-slate-100 text-sm">Personal UPI QR Code</h3>
-          <p className="text-[10px] text-slate-500">Show this QR to other AuraPay users to receive money.</p>
+          <p className="text-[10px] text-slate-500">Show this QR to other IndiaPay users to receive money.</p>
         </div>
 
         {/* Custom Dynamic SVG QR Code Design */}
@@ -274,7 +274,7 @@ function QRShowcase({ token, user, refreshUserProfile }) {
 
         <div className="border-t border-slate-850 pt-4 text-[9px] text-slate-500 font-mono text-center flex items-center justify-center gap-1">
           <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
-          <span>AuraPay Dynamic Encryption Core</span>
+          <span>IndiaPay Dynamic Encryption Core</span>
         </div>
       </div>
 

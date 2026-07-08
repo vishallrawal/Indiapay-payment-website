@@ -281,7 +281,7 @@ function EntertainmentBookings({ token, user, refreshUserProfile }) {
 
             <div className="glass-panel rounded-3xl p-5 border border-slate-850 text-[10px] text-slate-500 leading-relaxed font-mono">
               <span className="font-semibold text-slate-350 block mb-1">CANCELLATION POLICY:</span>
-              Tickets booked via AuraPay Go are eligible for 100% refund up to 2 hours prior to showtime. Cashback reward scratch cards claimed are non-reversible.
+              Tickets booked via IndiaPay Go are eligible for 100% refund up to 2 hours prior to showtime. Cashback reward scratch cards claimed are non-reversible.
             </div>
           </div>
 

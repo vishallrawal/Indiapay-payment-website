@@ -23,9 +23,9 @@ const initializeMockDB = () => {
       cardCvv: '831',
       cardPin: '9988',
       linkedBanks: [
-        { id: 'bank-1', bankName: 'HDFC Bank', accountNumber: 'XXXXXX8890', isDefault: true, upiPin: '1234' },
-        { id: 'bank-2', bankName: 'State Bank of India (SBI)', accountNumber: 'XXXXXX1024', isDefault: false, upiPin: '1234' },
-        { id: 'bank-3', bankName: 'ICICI Bank', accountNumber: 'XXXXXX5520', isDefault: false, upiPin: '1234' }
+        { id: 'bank-1', bankName: 'HDFC Bank', accountNumber: 'XXXXXX8890', isDefault: true, upiPin: '1234', balance: 52430 },
+        { id: 'bank-2', bankName: 'State Bank of India (SBI)', accountNumber: 'XXXXXX1024', isDefault: false, upiPin: '1234', balance: 18500 },
+        { id: 'bank-3', bankName: 'ICICI Bank', accountNumber: 'XXXXXX5520', isDefault: false, upiPin: '1234', balance: 9340 }
       ]
     };
     
@@ -248,16 +248,20 @@ const handleMockRequest = async (urlString, options = {}) => {
   // 9. API: /api/chats/send
   if (urlString.includes('/api/chats/send')) {
     const chats = getDB('mock_chats');
-    const email = body.recipient;
+    const email = body.receiverEmail || body.recipient || 'recipient@indiapay.com';
     const history = chats[email] || [];
     const newMsg = {
       id: `m-${Math.random().toString(36).substring(2, 7)}`,
+      senderEmail: 'recruiter@juspay.com',
+      receiverEmail: email,
       sender: 'recruiter@juspay.com',
       recipient: email,
-      content: body.content,
-      type: body.type || 'text',
-      amount: body.amount,
-      status: body.type === 'request' ? 'pending' : 'completed',
+      text: body.text || body.content || 'Payment message sent',
+      content: body.text || body.content || 'Payment message sent',
+      type: body.type || 'message',
+      amount: Number(body.amount || 0),
+      status: 'success',
+      createdAt: new Date().toISOString(),
       timestamp: new Date().toISOString()
     };
     history.push(newMsg);
@@ -425,7 +429,8 @@ const handleMockRequest = async (urlString, options = {}) => {
       bankName: body.bankName,
       accountNumber: `XXXXXX${body.accountNumber.slice(-4)}`,
       isDefault: user.linkedBanks.length === 0,
-      upiPin: body.upiPin
+      upiPin: body.upiPin,
+      balance: Math.floor(Math.random() * 82000) + 12400
     };
     user.linkedBanks.push(newBank);
     saveDB('mock_user', user);

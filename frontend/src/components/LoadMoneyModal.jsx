@@ -293,7 +293,7 @@ function LoadMoneyModal({ token, onClose, refreshDashboard }) {
           <div className="space-y-5">
             <div className="space-y-1">
               <h3 className="font-heading font-semibold text-slate-200">Load Wallet Balance</h3>
-              <p className="text-xs text-slate-400">Add cash to your AuraPay P2P wallet instantly.</p>
+              <p className="text-xs text-slate-400">Add cash to your IndiaPay P2P wallet instantly.</p>
             </div>
 
             <form onSubmit={handleInitiatePayment} className="space-y-4">
@@ -373,7 +373,7 @@ function LoadMoneyModal({ token, onClose, refreshDashboard }) {
 
             <div className="space-y-1.5">
               <h3 className="font-heading font-bold text-lg text-slate-200">Wallet Settle Success!</h3>
-              <p className="text-xs text-slate-400">₹{Number(amount).toLocaleString()} has been credited to your AuraPay balance.</p>
+              <p className="text-xs text-slate-400">₹{Number(amount).toLocaleString()} has been credited to your IndiaPay balance.</p>
             </div>
 
             <button

@@ -88,7 +88,7 @@ function SendMoneyModal({ token, user, onClose, refreshWallet }) {
                 <Send className="w-5 h-5 text-indigo-400" />
                 P2P Instapay Fund Transfer
               </h3>
-              <p className="text-xs text-slate-400">Transfer cash instantly to any registered AuraPay email.</p>
+              <p className="text-xs text-slate-400">Transfer cash instantly to any registered IndiaPay email.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">

@@ -292,7 +292,7 @@ function PublicPayPage({ linkId }) {
         {/* Brand Node */}
         <div className="flex items-center justify-center gap-2 mb-6 border-b border-slate-800/40 pb-4">
           <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] font-bold">A</div>
-          <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400">AuraPay Gateway</span>
+          <span className="text-[10px] font-mono font-bold tracking-widest text-slate-400">IndiaPay Gateway</span>
         </div>
 
         {/* STEP 1: Payer Identity */}
@@ -389,7 +389,7 @@ function PublicPayPage({ linkId }) {
 
             <div className="border-t border-slate-800/40 pt-4 flex items-center justify-center gap-1.5 text-[9px] text-slate-500 font-mono">
               <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
-              <span>AuraPay Core Audits Completed</span>
+              <span>IndiaPay Core Audits Completed</span>
             </div>
           </div>
         )}

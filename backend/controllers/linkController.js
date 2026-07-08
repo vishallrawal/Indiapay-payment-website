@@ -65,7 +65,7 @@ export const getLinkDetails = async (req, res) => {
 
     // Find creator's name to display on paypage
     const creator = await db.findOne('users', { email: link.creatorEmail });
-    const creatorName = creator ? creator.name : 'AuraPay Merchant';
+    const creatorName = creator ? creator.name : 'IndiaPay Merchant';
 
     res.status(200).json({
       success: true,
