@@ -407,8 +407,10 @@ function FintechDashboard({ user, token, refreshUserProfile, onNavigate }) {
                       <span className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400"><ArrowUpRight className="w-4 h-4" /></span>
                     )}
                     <div>
-                      <h5 className="font-semibold text-slate-200 text-xs">{txn.description}</h5>
-                      <span className="text-[9px] text-slate-500 font-mono">{new Date(txn.createdAt).toLocaleString()} • {txn.gateway.toUpperCase()}</span>
+                      <h5 className="font-semibold text-slate-200 text-xs">{txn.description || txn.desc || 'Payment Transaction'}</h5>
+                      <span className="text-[9px] text-slate-500 font-mono">
+                        {new Date(txn.createdAt || txn.timestamp || Date.now()).toLocaleString()} • {(txn.gateway || 'UPI').toUpperCase()}
+                      </span>
                     </div>
                   </div>
                   <strong className={`font-heading font-bold text-sm ${isInflow ? 'text-emerald-400' : 'text-slate-300'}`}>

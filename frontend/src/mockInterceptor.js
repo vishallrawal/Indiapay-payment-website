@@ -40,7 +40,7 @@ const initializeMockDB = () => {
     };
 
     const defaultTransactions = [
-      { id: 'TXN-MOCK101', type: 'debit', amount: 500, title: 'Send to Rohit Verma', desc: 'UPI Payment', timestamp: new Date(Date.now() - 3600000 * 24).toISOString(), status: 'completed', category: 'p2p' }
+      { id: 'TXN-MOCK101', type: 'debit', amount: 500, title: 'Send to Rohit Verma', description: 'UPI Payment to Rohit Verma', gateway: 'wallet_p2p', createdAt: new Date(Date.now() - 3600000 * 24).toISOString(), status: 'success', category: 'p2p' }
     ];
 
     const defaultRewards = [
@@ -126,9 +126,10 @@ const handleMockRequest = async (urlString, options = {}) => {
       type: 'credit',
       amount,
       title: 'Loaded Money to Wallet',
-      desc: 'Debit/Credit checkout load',
-      timestamp: new Date().toISOString(),
-      status: 'completed',
+      description: 'Loaded money via credit/debit card checkout',
+      gateway: 'stripe',
+      createdAt: new Date().toISOString(),
+      status: 'success',
       category: 'wallet'
     };
     txns.unshift(newTxn);
@@ -154,9 +155,10 @@ const handleMockRequest = async (urlString, options = {}) => {
       type: 'debit',
       amount,
       title: `${body.serviceType.toUpperCase()} Reservation`,
-      desc: `Paid via ${body.gatewayUsed}`,
-      timestamp: new Date().toISOString(),
-      status: 'completed',
+      description: `Booked ticket paid via ${body.gatewayUsed}`,
+      gateway: body.gatewayUsed || 'demo_fallback',
+      createdAt: new Date().toISOString(),
+      status: 'success',
       category: 'booking'
     };
     txns.unshift(newTxn);
@@ -240,9 +242,10 @@ const handleMockRequest = async (urlString, options = {}) => {
       type: 'debit',
       amount,
       title: `Sent money to ${body.recipient}`,
-      desc: 'UPI Instant P2P Payment',
-      timestamp: new Date().toISOString(),
-      status: 'completed',
+      description: `Sent money to ${body.recipient} via UPI`,
+      gateway: 'wallet_p2p',
+      createdAt: new Date().toISOString(),
+      status: 'success',
       category: 'p2p'
     };
     txns.unshift(newTxn);
@@ -297,9 +300,10 @@ const handleMockRequest = async (urlString, options = {}) => {
       type: 'debit',
       amount,
       title: `Paid request from ${email}`,
-      desc: 'Settled Chat Request',
-      timestamp: new Date().toISOString(),
-      status: 'completed',
+      description: `Settled chat payment request from ${email}`,
+      gateway: 'wallet_p2p',
+      createdAt: new Date().toISOString(),
+      status: 'success',
       category: 'p2p'
     };
     txns.unshift(newTxn);
@@ -351,9 +355,10 @@ const handleMockRequest = async (urlString, options = {}) => {
         type: 'credit',
         amount: card.rewardValue,
         title: 'IndiaPay Reward Cashback',
-        desc: 'Scratch Card Claimed',
-        timestamp: new Date().toISOString(),
-        status: 'completed',
+        description: 'Cashback won by scratching IndiaPay Reward Card',
+        gateway: 'rewards_engine',
+        createdAt: new Date().toISOString(),
+        status: 'success',
         category: 'cashback'
       };
       txns.unshift(newTxn);
@@ -392,9 +397,10 @@ const handleMockRequest = async (urlString, options = {}) => {
       type: body.type,
       amount: Number(body.amount),
       title: body.title,
-      desc: body.desc,
-      timestamp: body.timestamp || new Date().toISOString(),
-      status: body.status || 'completed',
+      description: body.description || body.desc || 'Manual Ledger Injection',
+      gateway: body.gateway || 'console_tool',
+      createdAt: body.createdAt || body.timestamp || new Date().toISOString(),
+      status: body.status || 'success',
       category: body.category || 'other'
     };
     txns.unshift(newTxn);
