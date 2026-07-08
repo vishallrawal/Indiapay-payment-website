@@ -162,7 +162,7 @@ const handleMockRequest = async (urlString, options = {}) => {
     const txns = getDB('mock_transactions');
     const newTxn = {
       id: `TXN-LD${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
-      type: 'credit',
+      type: 'load',
       amount,
       title: 'Loaded Money to Wallet',
       description: 'Loaded money via credit/debit card checkout',
@@ -399,7 +399,7 @@ const handleMockRequest = async (urlString, options = {}) => {
       const txns = getDB('mock_transactions');
       const newTxn = {
         id: `CB-${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
-        type: 'credit',
+        type: 'reward_credit',
         amount: card.rewardValue,
         title: 'IndiaPay Reward Cashback',
         description: 'Cashback won by scratching IndiaPay Reward Card',
