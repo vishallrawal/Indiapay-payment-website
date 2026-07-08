@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+  }
+}
+
+/* Custom styles */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+.glass-panel {
+  background: rgba(13, 20, 38, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-input {
+  background: rgba(8, 12, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+.glass-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+  outline: none;
+}
+
+/* Glowing effects */
+.glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+}
+.glow-indigo {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.floating-element {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Premium Light Mode styling (Lavender tint background, colorful glow properties, beautiful gradients) */
+.light,
+.light body {
+  background-color: #f6f5ff !important;
+  background-image: radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.6) 0, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(243, 232, 255, 0.7) 0, transparent 50%),
+                    radial-gradient(at 50% 100%, rgba(254, 243, 199, 0.5) 0, transparent 60%) !important;
+  background-attachment: fixed !important;
+  color: #0f172a !important;
+}
+
+.light .glass-panel,
+.light .gpay-panel-bg {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(139, 92, 246, 0.18) !important; /* Premium soft lavender border */
+  color: #1e293b !important;
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.14),
+              0 1px 3px rgba(0, 0, 0, 0.01) !important;
+}
+
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6, .light strong {
+  color: #0f172a !important;
+}
+
+.light .text-slate-100,
+.light .text-slate-200,
+.light .text-slate-300,
+.light .text-slate-350,
+.light .text-white {
+  color: #1e293b !important;
+}
+
+.light .text-slate-400,
+.light .text-slate-500 {
+  color: #4b5563 !important; /* Darker Slate grey for maximum text contrast */
+}
+
+.light .border-slate-850,
+.light .border-slate-800,
+.light .border-slate-800\/60,
+.light .border-slate-800\/40,
+.light .border-indigo-950\/40 {
+  border-color: rgba(139, 92, 246, 0.12) !important;
+}
+
+.light header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.15) !important; /* Lavender border accent */
+}
+
+.light input, .light select, .light textarea {
+  background-color: #ffffff !important;
+  border-color: rgba(139, 92, 246, 0.2) !important;
+  color: #0f172a !important;
+}
+
+.light input:focus, .light select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1) !important;
+}
+
+.light .bg-slate-900,
+.light .bg-\[\#090e1f\],
+.light .bg-\[\#090d19\]\/40,
+.light .bg-\[\#070b14\]\/60,
+.light .bg-\[\#070b14\]\/90,
+.light .bg-\[\#0c101d\]\/60,
+.light .bg-\[\#080c18\] {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(139, 92, 246, 0.12) !important;
+}
+
+/* Premium Gradient Overrides for Blue and Red buttons in Light Mode */
+.light .bg-blue-600 {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%) !important; /* Beautiful Blue to Indigo gradient */
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.25) !important;
+  border: none !important;
+}
+.light .bg-blue-600:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%) !important;
+}
+
+.light .bg-red-650,
+.light .bg-red-600 {
+  background: linear-gradient(135deg, #ef4444 0%, #db2777 100%) !important; /* Vibrant Red to Pink/Maroon gradient */
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px 0 rgba(219, 39, 119, 0.2) !important;
+  border: none !important;
+}
+.light .bg-red-650:hover,
+.light .bg-red-600:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #c2185b 100%) !important;
+}
+
+.light .text-indigo-400 {
+  color: #4f46e5 !important;
+}
+
+.light .text-teal-400 {
+  color: #0d9488 !important;
+}
+
+.light .text-purple-400 {
+  color: #7c3aed !important;
+}
+
+.light .text-pink-400 {
+  color: #db2777 !important;
+}
+
+.light .text-rose-450 {
+  color: #f43f5e !important;
+}
+
+.light .text-amber-500 {
+  color: #d97706 !important;
+}
+
+/* Retain Dark Credit Card UI for high fidelity design */
+.light .relative.w-full.h-56.rounded-3xl.bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, #0b0f19, #1b264f) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.light .relative.w-full.h-56.rounded-3xl.bg-gradient-to-br * {
+  color: #f8fafc !important;
+}
+
+/* Custom Global Classes for Premium Sunset Theme (Red + Maroon + Gold/Yellow) */
+.gpay-main-bg {
+  background: radial-gradient(circle at 10% 10%, rgba(59, 7, 18, 0.98) 0%, rgba(20, 2, 6, 0.99) 55%, #050002 100%),
+              radial-gradient(circle at 90% 10%, rgba(69, 10, 10, 0.98) 0%, rgba(25, 4, 4, 0.99) 50%, #000000 100%),
+              linear-gradient(135deg, #1c0205 0%, #2b040a 25%, #4c0812 60%, #b45309 100%) !important;
+  background-blend-mode: screen, plus-lighter, normal !important;
+  background-attachment: fixed !important;
+  color: #ffffff;
+}
+
+.light .gpay-main-bg {
+  background-color: #f6f5ff !important;
+  background-image: radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.6) 0, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(243, 232, 255, 0.7) 0, transparent 50%),
+                    radial-gradient(at 50% 100%, rgba(254, 243, 199, 0.5) 0, transparent 60%) !important;
+  background-attachment: fixed !important;
+  color: #0f172a !important;
+}
+
+/* Translucent Premium Maroon/Black Panels with Golden border highlights in Dark Mode, white in Light Mode */
+.gpay-panel-bg {
+  background-color: rgba(22, 3, 6, 0.82) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.22) !important; /* Premium gold border */
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+.light .gpay-panel-bg {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(139, 92, 246, 0.18) !important; /* Premium soft lavender border */
+  box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.14) !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html:not(.light) .text-slate-400,
+html:not(.light) .text-slate-500,
+html:not(.light) p {
+  color: #fbbf24 !important; /* Gold/yellow for description text and paragraphs */
+}
+
+html:not(.light) .text-slate-300 {
+  color: #fde047 !important; /* Bright yellow for secondary headers and labels */
+}
+
+html:not(.light) .text-slate-200,
+html:not(.light) .text-slate-350,
+html:not(.light) .text-slate-100,
+html:not(.light) .text-white {
+  color: #ffffff !important; /* White for primary headings */
+}
+
+html:not(.light) span:not(.font-bold) {
+  color: #fca5a5 !important; /* Maroon/rose for helper tags and metadata */
+}
+
+html:not(.light) .border-slate-850,
+html:not(.light) .border-slate-800 {
+  border-color: rgba(245, 158, 11, 0.15) !important; /* Smooth gold border partitions */
+}
+
+/* Premium Light Mode Color-Coded Tints and Gradients */
+.light .gpay-quick-btn-send {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%) !important; /* Soft Blue-Indigo tint */
+  border: 1.5px solid #c7d2fe !important;
+}
+.light .gpay-quick-btn-qr {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%) !important; /* Soft Teal tint */
+  border: 1.5px solid #99f6e4 !important;
+}
+.light .gpay-quick-btn-banks {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important; /* Soft Purple-Maroon tint */
+  border: 1.5px solid #e9d5ff !important;
+}
+
+.light .gpay-booking-btn-flight {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important; /* Soft Blue */
+  border: 1.5px solid #bfdbfe !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08) !important;
+}
+.light .gpay-booking-btn-train {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important; /* Soft Green */
+  border: 1.5px solid #bbf7d0 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08) !important;
+}
+.light .gpay-booking-btn-bus {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important; /* Soft Lavender/Purple */
+  border: 1.5px solid #e9d5ff !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08) !important;
+}
+.light .gpay-booking-btn-movie {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%) !important; /* Soft Pink/Rose */
+  border: 1.5px solid #fbcfe8 !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.08) !important;
+}
+
+.light .gpay-utility-btn-mobile {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+  border: 1.5px solid #bae6fd !important;
+}
+.light .gpay-utility-btn-electricity {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  border: 1.5px solid #fde68a !important;
+}
+.light .gpay-utility-btn-dth {
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important;
+  border: 1.5px solid #fecdd3 !important;
+}
+.light .gpay-utility-btn-water {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%) !important;
+  border: 1.5px solid #99f6e4 !important;
+}
+
