@@ -379,10 +379,12 @@ function ChatPayments({ user, token, refreshUserProfile }) {
                 </div>
               ) : (
                 messages.map(msg => {
-                  const isMe = msg.senderEmail.toLowerCase() === user.email.toLowerCase();
+                  const senderMail = msg.senderEmail || msg.sender || '';
+                  const receiverMail = msg.receiverEmail || msg.recipient || '';
+                  const isMe = senderMail.toLowerCase() === user.email.toLowerCase();
                   
                   // Render regular text bubble
-                  if (msg.type === 'message') {
+                  if (msg.type === 'message' || msg.type === 'text') {
                     return (
                       <div key={msg.id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-xs px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed ${
@@ -390,9 +392,9 @@ function ChatPayments({ user, token, refreshUserProfile }) {
                             ? 'bg-indigo-600 text-white rounded-tr-none' 
                             : 'bg-slate-900 border border-slate-850 text-slate-300 rounded-tl-none'
                         }`}>
-                          <p>{msg.text}</p>
+                          <p>{msg.text || msg.content}</p>
                           <span className="text-[8px] text-slate-400/90 text-right block mt-1 font-mono">
-                            {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            {new Date(msg.createdAt || msg.timestamp || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                         </div>
                       </div>
@@ -400,28 +402,28 @@ function ChatPayments({ user, token, refreshUserProfile }) {
                   }
 
                   // Render payment request card bubble
-                  if (msg.type === 'payment_request') {
-                    const receivedRequest = msg.receiverEmail.toLowerCase() === user.email.toLowerCase();
+                  if (msg.type === 'payment_request' || msg.type === 'request') {
+                    const receivedRequest = receiverMail.toLowerCase() === user.email.toLowerCase();
                     return (
                       <div key={msg.id} className="flex justify-center">
                         <div className="w-full max-w-sm rounded-2xl border border-slate-800 bg-[#0c101e]/80 p-4 space-y-3.5 shadow-lg relative overflow-hidden">
                           {/* Accent border */}
                           <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${
-                            msg.status === 'pending' ? 'bg-amber-500' : msg.status === 'success' ? 'bg-emerald-500' : 'bg-red-500'
+                            msg.status === 'pending' ? 'bg-amber-500' : msg.status === 'success' || msg.status === 'completed' ? 'bg-emerald-500' : 'bg-red-500'
                           }`}></div>
 
                           <div className="flex justify-between items-start pl-2">
                             <div>
                               <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest block font-mono">BILL SPLIT / REQUEST</span>
-                              <h5 className="text-[11px] font-semibold text-slate-300 mt-0.5">{msg.text}</h5>
-                              <span className="text-[9px] text-slate-500">Requested by: {msg.senderEmail}</span>
+                              <h5 className="text-[11px] font-semibold text-slate-300 mt-0.5">{msg.text || msg.content}</h5>
+                              <span className="text-[9px] text-slate-500">Requested by: {senderMail}</span>
                             </div>
                             <span className="text-sm font-bold text-slate-200 font-heading">₹{msg.amount.toLocaleString()}</span>
                           </div>
 
                           <div className="flex items-center justify-between border-t border-slate-800/40 pt-3 pl-2">
                             <span className="text-[9px] text-slate-500 font-mono">
-                              {new Date(msg.createdAt).toLocaleDateString()}
+                              {new Date(msg.createdAt || msg.timestamp || Date.now()).toLocaleDateString()}
                             </span>
 
                             {msg.status === 'pending' ? (
