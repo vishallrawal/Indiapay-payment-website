@@ -45,7 +45,7 @@ const initializeMockDB = () => {
     };
 
     const defaultTransactions = [
-      { id: 'TXN-MOCK101', type: 'debit', amount: 500, title: 'Send to Rohit Verma', description: 'UPI Payment to Rohit Verma', gateway: 'wallet_p2p', createdAt: new Date(Date.now() - 3600000 * 24).toISOString(), status: 'success', category: 'p2p' }
+      { id: 'TXN-MOCK101', type: 'transfer', senderEmail: 'recruiter@juspay.com', receiverEmail: 'rohit@indiapay.com', amount: 500, title: 'Send to Rohit Verma', description: 'UPI Payment to Rohit Verma', gateway: 'wallet_p2p', createdAt: new Date(Date.now() - 3600000 * 24).toISOString(), status: 'success', category: 'p2p' }
     ];
 
     const defaultRewards = [
@@ -191,7 +191,7 @@ const handleMockRequest = async (urlString, options = {}) => {
     const txns = getDB('mock_transactions');
     const newTxn = {
       id: `BKG-${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
-      type: 'debit',
+      type: 'booking',
       amount,
       title: `${body.serviceType.toUpperCase()} Reservation`,
       description: `Booked ticket paid via ${body.gatewayUsed}`,
