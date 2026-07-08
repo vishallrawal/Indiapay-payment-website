@@ -51,8 +51,8 @@ function App() {
   }, [theme]);
 
   // Form states
-  const [authEmail, setAuthEmail] = useState('');
-  const [authPassword, setAuthPassword] = useState('');
+  const [authEmail, setAuthEmail] = useState('recruiter@juspay.com');
+  const [authPassword, setAuthPassword] = useState('password123');
   const [authName, setAuthName] = useState('');
 
   // 1. Silent login for Recruiter if no token present (Direct landing bypass!)
@@ -113,6 +113,8 @@ function App() {
     setToken('');
     setUser(null);
     setActiveTab('home');
+    setAuthEmail('recruiter@juspay.com');
+    setAuthPassword('password123');
   };
 
   // 3. User Register / Login (Manual fallback option)
