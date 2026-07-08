@@ -6,9 +6,14 @@ const IS_MOCK_MODE = window.location.hostname.includes('github.io') || window.lo
 // Keep track of original fetch
 const originalFetch = window.fetch;
 
-// Initialize mock database in localStorage if not present
+// Initialize mock database in localStorage if not present or if database is corrupted
 const initializeMockDB = () => {
-  if (!localStorage.getItem('mock_db_initialized')) {
+  if (!localStorage.getItem('mock_db_initialized') ||
+      !localStorage.getItem('mock_user') ||
+      !localStorage.getItem('mock_transactions') ||
+      !localStorage.getItem('mock_rewards') ||
+      !localStorage.getItem('mock_contacts') ||
+      !localStorage.getItem('mock_chats')) {
     const defaultUser = {
       name: 'IndiaPay User',
       email: 'recruiter@juspay.com',
@@ -69,7 +74,19 @@ const handleMockRequest = async (urlString, options = {}) => {
   }
 
   // Helper to read and write DB
-  const getDB = (key) => JSON.parse(localStorage.getItem(key));
+  const getDB = (key) => {
+    try {
+      const val = localStorage.getItem(key);
+      if (!val) {
+        if (key.includes('transactions') || key.includes('rewards') || key.includes('contacts')) return [];
+        if (key.includes('chats')) return {};
+        return {};
+      }
+      return JSON.parse(val) || (key.includes('transactions') || key.includes('rewards') || key.includes('contacts') ? [] : {});
+    } catch (e) {
+      return key.includes('transactions') || key.includes('rewards') || key.includes('contacts') ? [] : {};
+    }
+  };
   const saveDB = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
   // Response helper

@@ -84,9 +84,9 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
     }
 
     // Process real transactions over last 7 days
-    const sorted = [...transactions]
-      .filter(t => t.status === 'success')
-      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    const sorted = [...(transactions || [])]
+      .filter(t => t && t.status === 'success')
+      .sort((a, b) => new Date(a.createdAt || a.timestamp || Date.now()) - new Date(b.createdAt || b.timestamp || Date.now()));
 
     let runningBalance = 0;
     const points = sorted.map(t => {
