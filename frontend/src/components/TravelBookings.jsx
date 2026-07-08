@@ -142,7 +142,7 @@ function TravelBookings({ token, user, refreshUserProfile }) {
             </div>
             <div className="flex justify-between">
               <span>ROUTE:</span>
-              <strong className="text-slate-350">{successBooking.details.origin} ➔ {successBooking.details.destination}</strong>
+              <strong className="text-slate-350">{successBooking.details?.origin || 'Delhi (DEL)'} ➔ {successBooking.details?.destination || 'Mumbai (BOM)'}</strong>
             </div>
             <div className="flex justify-between">
               <span>FARE PAID:</span>

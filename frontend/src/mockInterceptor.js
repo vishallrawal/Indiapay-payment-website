@@ -178,12 +178,14 @@ const handleMockRequest = async (urlString, options = {}) => {
 
     return jsonResponse({
       success: true,
-      id: newTxn.id,
-      passengerName: user.name,
-      serviceType: body.serviceType,
-      details: body.details,
-      amount: body.amount,
-      gatewayUsed: body.gatewayUsed,
+      booking: {
+        id: newTxn.id,
+        userEmail: user.email,
+        serviceType: body.serviceType,
+        details: body.details,
+        amount: Number(body.amount),
+        status: 'success'
+      },
       rewardWon: true,
       rewardMessage: 'Congratulate! You won a scratch card!'
     });

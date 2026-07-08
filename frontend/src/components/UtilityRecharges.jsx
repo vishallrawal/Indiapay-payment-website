@@ -152,7 +152,7 @@ function UtilityRecharges({ token, user, refreshUserProfile }) {
             </div>
             <div className="flex justify-between">
               <span>DESCRIPTION:</span>
-              <strong className="text-slate-350">{successBooking.details.desc || 'Utility bill settle'}</strong>
+              <strong className="text-slate-350">{successBooking.details?.desc || 'Utility bill settle'}</strong>
             </div>
             <div className="flex justify-between">
               <span>AMOUNT CHARGED:</span>
