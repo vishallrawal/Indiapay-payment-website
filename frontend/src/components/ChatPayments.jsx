@@ -65,7 +65,7 @@ function ChatPayments({ user, token, refreshUserProfile }) {
       });
       const data = await res.json();
       if (data.success) {
-        setMessages(data.messages);
+        setMessages(data.messages || data.history || []);
       } else {
         setChatError(data.error || 'Failed to sync conversation.');
       }

@@ -220,7 +220,7 @@ const handleMockRequest = async (urlString, options = {}) => {
     const email = parts[parts.length - 1];
     const chats = getDB('mock_chats');
     const history = chats[email] || [];
-    return jsonResponse({ success: true, history });
+    return jsonResponse({ success: true, messages: history, history });
   }
 
   // 9. API: /api/chats/send
