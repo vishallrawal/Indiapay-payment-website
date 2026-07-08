@@ -60,6 +60,18 @@ const initializeMockDB = () => {
     localStorage.setItem('mock_rewards', JSON.stringify(defaultRewards));
     localStorage.setItem('mock_db_initialized', 'true');
   }
+
+  // Auto-repair user balance if it got set to NaN or null
+  try {
+    const userStr = localStorage.getItem('mock_user');
+    if (userStr) {
+      const userObj = JSON.parse(userStr);
+      if (!userObj || isNaN(userObj.balance) || userObj.balance === null || userObj.balance === undefined) {
+        userObj.balance = 75000;
+        localStorage.setItem('mock_user', JSON.stringify(userObj));
+      }
+    }
+  } catch (e) {}
 };
 
 const handleMockRequest = async (urlString, options = {}) => {
@@ -133,9 +145,19 @@ const handleMockRequest = async (urlString, options = {}) => {
   // 5. API: /api/wallet/load
   if (urlString.includes('/api/wallet/load') || urlString.includes('/api/wallet/confirm-load')) {
     const user = getDB('mock_user');
-    const amount = Number(body.amount);
-    user.balance += amount;
-    saveDB('mock_user', user);
+    const amount = Number(body.amount || 0);
+    
+    let isLoadAlreadyRegistered = false;
+    
+    if (!isNaN(amount) && amount > 0) {
+      // Avoid double-crediting if confirm-load is triggered after load
+      if (!urlString.includes('/api/wallet/confirm-load')) {
+        user.balance += amount;
+        saveDB('mock_user', user);
+      } else {
+        isLoadAlreadyRegistered = true;
+      }
+    }
 
     const txns = getDB('mock_transactions');
     const newTxn = {
