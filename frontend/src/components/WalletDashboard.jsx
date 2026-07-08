@@ -153,7 +153,7 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
 
           <div className="my-2 z-10">
             <span className="text-[9px] text-indigo-200 font-semibold tracking-widest uppercase block opacity-70">Wallet Account Balance</span>
-            <h3 className="text-3xl font-bold font-heading mt-1 tracking-tight">₹{user.balance.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</h3>
+            <h3 className="text-3xl font-bold font-heading mt-1 tracking-tight">₹{(user.balance || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</h3>
           </div>
 
           <div className="flex justify-between items-end z-10 border-t border-slate-700/20 pt-3">
@@ -176,7 +176,7 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
             <div className="glass-panel rounded-2xl p-5 flex items-center justify-between border border-slate-850 shadow-md">
               <div className="space-y-1">
                 <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400">Total Money Received</span>
-                <h4 className="text-xl font-bold font-heading text-emerald-400">₹{totalInflow.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
+                <h4 className="text-xl font-bold font-heading text-emerald-400">₹{(totalInflow || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
                 <p className="text-[9px] text-slate-500">Inflows & card deposits</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shadow-lg shadow-emerald-500/5">
@@ -188,7 +188,7 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
             <div className="glass-panel rounded-2xl p-5 flex items-center justify-between border border-slate-850 shadow-md">
               <div className="space-y-1">
                 <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400">Total Money Sent</span>
-                <h4 className="text-xl font-bold font-heading text-red-400">₹{totalOutflow.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
+                <h4 className="text-xl font-bold font-heading text-red-400">₹{(totalOutflow || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
                 <p className="text-[9px] text-slate-500">P2P Wallet Transfers</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 shadow-lg shadow-red-500/5">
@@ -358,7 +358,7 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
                   <div className="flex items-center gap-4">
                     <div className="text-right">
                       <strong className={`font-heading font-bold text-sm ${isInflow ? 'text-emerald-400' : 'text-slate-200'}`}>
-                        {isInflow ? '+' : '-'} ₹{txn.amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                        {isInflow ? '+' : '-'} ₹{(txn.amount || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                       </strong>
                       <span className={`block text-[9px] font-mono font-bold mt-0.5 ${
                         txn.status === 'success' ? 'text-emerald-500' : 'text-amber-500'

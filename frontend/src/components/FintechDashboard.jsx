@@ -153,7 +153,7 @@ function FintechDashboard({ user, token, refreshUserProfile, onNavigate }) {
             <div className="glass-panel rounded-2xl p-5 flex items-center justify-between border border-slate-850">
               <div className="space-y-1">
                 <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400">Cashback & Deposits</span>
-                <h4 className="text-lg font-bold font-heading text-emerald-400">₹{totalInflow.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
+                <h4 className="text-lg font-bold font-heading text-emerald-400">₹{(totalInflow || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
                 <span className="text-[8px] text-slate-500 block">Funds added + won cards</span>
               </div>
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
@@ -164,7 +164,7 @@ function FintechDashboard({ user, token, refreshUserProfile, onNavigate }) {
             <div className="glass-panel rounded-2xl p-5 flex items-center justify-between border border-slate-850">
               <div className="space-y-1">
                 <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400">Spending & Transfers</span>
-                <h4 className="text-lg font-bold font-heading text-red-400">₹{totalOutflow.toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
+                <h4 className="text-lg font-bold font-heading text-red-400">₹{(totalOutflow || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</h4>
                 <span className="text-[8px] text-slate-500 block">Bookings + P2P sends</span>
               </div>
               <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
@@ -414,7 +414,7 @@ function FintechDashboard({ user, token, refreshUserProfile, onNavigate }) {
                     </div>
                   </div>
                   <strong className={`font-heading font-bold text-sm ${isInflow ? 'text-emerald-400' : 'text-slate-300'}`}>
-                    {isInflow ? '+' : '-'} ₹{txn.amount.toLocaleString('en-IN')}
+                    {isInflow ? '+' : '-'} ₹{(txn.amount || 0).toLocaleString('en-IN')}
                   </strong>
                 </div>
               );

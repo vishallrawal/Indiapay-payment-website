@@ -290,7 +290,7 @@ function App() {
         <div className="flex items-center gap-4">
           <div className="text-right hidden sm:block">
             <span className="text-xs font-semibold text-slate-200 block">{user.name}</span>
-            <span className="text-[9px] text-teal-400 font-mono font-bold">Balance: ₹{user.balance.toLocaleString()}</span>
+            <span className="text-[9px] text-teal-400 font-mono font-bold">Balance: ₹{(user.balance || 0).toLocaleString()}</span>
           </div>
 
           <button

@@ -180,7 +180,7 @@ function RewardsCenter({ token, user, refreshUserProfile }) {
 
         <div className="text-center md:text-right shrink-0">
           <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400 font-mono">Total Won</span>
-          <h2 className="text-3xl font-bold font-heading text-yellow-500 mt-1">₹{totalCashback.toLocaleString('en-IN')}</h2>
+          <h2 className="text-3xl font-bold font-heading text-yellow-500 mt-1">₹{(totalCashback || 0).toLocaleString('en-IN')}</h2>
           <span className="text-[9px] text-slate-500 font-mono">Credited to linked bank</span>
         </div>
       </div>

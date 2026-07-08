@@ -418,7 +418,7 @@ function ChatPayments({ user, token, refreshUserProfile }) {
                               <h5 className="text-[11px] font-semibold text-slate-300 mt-0.5">{msg.text || msg.content}</h5>
                               <span className="text-[9px] text-slate-500">Requested by: {senderMail}</span>
                             </div>
-                            <span className="text-sm font-bold text-slate-200 font-heading">₹{msg.amount.toLocaleString()}</span>
+                            <span className="text-sm font-bold text-slate-200 font-heading">₹{(msg.amount || 0).toLocaleString()}</span>
                           </div>
 
                           <div className="flex items-center justify-between border-t border-slate-800/40 pt-3 pl-2">
