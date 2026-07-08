@@ -241,10 +241,12 @@ const handleMockRequest = async (urlString, options = {}) => {
     const txns = getDB('mock_transactions');
     const newTxn = {
       id: `TXN-P2P${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
-      type: 'debit',
+      type: 'transfer',
       amount,
-      title: `Sent money to ${body.recipient}`,
-      description: `Sent money to ${body.recipient} via UPI`,
+      senderEmail: user.email,
+      receiverEmail: body.recipientEmail || body.recipient || 'recipient@indiapay.com',
+      title: `Sent money to ${body.recipientEmail || body.recipient || 'Recipient'}`,
+      description: `Sent money via UPI Instant P2P Payment`,
       gateway: 'wallet_p2p',
       createdAt: new Date().toISOString(),
       status: 'success',

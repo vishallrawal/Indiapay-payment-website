@@ -319,16 +319,16 @@ function WalletDashboard({ user, token, refreshUserProfile }) {
           <div className="divide-y divide-slate-850 text-xs space-y-1">
             {transactions.map(txn => {
               const isInflow = txn.type === 'load' || 
-                (txn.type === 'transfer' && txn.receiverEmail.toLowerCase() === user.email.toLowerCase()) ||
-                (txn.type === 'payment_link' && txn.receiverEmail.toLowerCase() === user.email.toLowerCase());
+                (txn.type === 'transfer' && txn.receiverEmail && txn.receiverEmail.toLowerCase() === user.email.toLowerCase()) ||
+                (txn.type === 'payment_link' && txn.receiverEmail && txn.receiverEmail.toLowerCase() === user.email.toLowerCase());
 
               const partyLabel = txn.type === 'load' 
                 ? 'Deposited funds via card' 
                 : txn.type === 'payment_link' 
-                ? `Received link payout from ${txn.senderEmail.replace('link_payer_', '')}` 
+                ? `Received link payout from ${(txn.senderEmail || '').replace('link_payer_', '')}` 
                 : isInflow 
-                ? `Received transfer from ${txn.senderEmail}` 
-                : `Transferred balance to ${txn.receiverEmail}`;
+                ? `Received transfer from ${txn.senderEmail || 'sender'}` 
+                : `Transferred balance to ${txn.receiverEmail || 'recipient'}`;
 
               return (
                 <div key={txn.id} className="py-3.5 flex items-center justify-between gap-4 hover:bg-slate-900/10 px-2 rounded-xl transition-all duration-150">
