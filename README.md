@@ -1,70 +1,35 @@
-# IndiaPay Super - Google Pay Fullstack Clone
+# IndiaPay Super - Premium Google Pay Clone
 
-IndiaPay Super is a premium, fully interactive Google Pay clone built with React, Tailwind CSS, Node.js, and Express. It features a complete payment selection orchestrator, user wallets, P2P chats, linked banks, automated scratch card cashback rewards, and a merchant developer panel.
-
----
-
-## 🚀 How to Run Locally
-
-### 1. Install Dependencies
-In the root directory, run:
-```bash
-npm install
-npm run install-all
-```
-
-### 2. Start Servers Concurrently
-Run:
-```bash
-npm start
-```
-This will launch:
-* **Backend Server**: http://localhost:5000
-* **Frontend Web App**: http://localhost:3000
+IndiaPay Super is a premium, fully interactive payment orchestrator simulator cloning the core experiences of Google Pay (GPay). It features transactional P2P chat wallets, travel tickets booking, utility bill settlements, scratch card cashback rewards, and a developer controls panel.
 
 ---
 
-## 📦 How to Push to your GitHub Account
-
-Since Git has already been initialized and committed on your local system, you can easily push it to your GitHub profile by running these commands in your command prompt:
-
-```bash
-# 1. Rename local branch to main
-git branch -M main
-
-# 2. Add your GitHub remote repository link (Replace the URL with your actual GitHub repo)
-git remote add origin https://github.com/your-username/indiapay-super.git
-
-# 3. Push to your GitHub repository
-git push -u origin main
-```
+## 🔗 Live Demo
+Check out the live website here:
+👉 **[https://vishalrawal.github.io/indiapay-super/](https://vishalrawal.github.io/indiapay-super/)**
 
 ---
 
-## ⚡ Deployment Guidelines (Render + Vercel / GitHub Pages)
+## 🛠️ Technologies Stack
 
-### ⚠️ Note on GitHub Pages (`github.io`)
-GitHub Pages (`github.io`) only supports hosting **static frontend pages** (HTML, CSS, JS). Since this is a **Full-Stack Application** with a Node.js Express backend and transaction ledgers:
-* If you deploy the frontend directly to `github.io`, the visual elements will load, but authentication, balance transfers, utility bill settlements, and rewards claims will fail.
-* To make it fully live, you must host the backend API on a server hosting provider like **Render** (Free Tier).
+* **Frontend**: React.js, Tailwind CSS (Vanilla overrides), Lucide Icons, HTML5 Semantic Elements.
+* **Backend**: Node.js, Express.js.
+* **Database**: MongoDB (Object modeling via Mongoose) with automatic local JSON database failover module.
+* **Fonts**: Outfit (heading typography) & Plus Jakarta Sans (interface text).
 
-### 🛠️ Step-by-Step Hosting Plan:
+---
 
-#### 1. Host the Backend on Render
-1. Sign up on [Render.com](https://render.com/) (Free).
-2. Click **New +** ➔ **Web Service**.
-3. Connect your GitHub repository.
-4. Set settings:
-   * **Runtime**: Node
-   * **Build Command**: `npm install` (within backend subdirectory or using `package.json` configurations)
-   * **Start Command**: `node server.js`
-5. Click **Deploy**. Render will generate a live URL (e.g., `https://indiapay-backend.onrender.com`).
+## ⚡ Core Features
 
-#### 2. Configure Frontend URL
-In your local code, open `frontend/src/config.js` and update `API_BASE` to point to your live Render backend URL instead of localhost:
-```javascript
-export const API_BASE = 'https://your-backend-app.onrender.com';
-```
-
-#### 3. Host Frontend on Vercel, Netlify, or GitHub Pages
-You can now deploy the frontend directory directly to Vercel or GitHub Pages, and it will communicate smoothly with your live backend server database!
+1. **Multi-Gateway Payment Selection**:
+   * Settle payments using **Net Banking/UPI**, **Debit Card**, **Credit Card**, or **EMI Installment Plans** (3, 6, 12 months calculator).
+2. **Keypad Secure UPI Validator**:
+   * Authentic NPCI-style numeric screen locks confirming linked bank account security PINs.
+3. **P2P Conversational Wallet**:
+   * Seeded chat profiles (Rohit Verma, Sneha Reddy) to simulate peer payments and transaction threads.
+4. **Automated Scratch Cards Rewards**:
+   * Assured scratch cards won on booking settlements, granting random cashbacks (₹10 - ₹150) instantly added to user balance.
+5. **Developer & Customizer Console**:
+   * Real-time updates for usernames, wallet values, CVVs, linked banks list, and manual transaction ledger injections.
+6. **Vishal Rawal Credit Global Footer**:
+   * Elegant footer branding credit design.
